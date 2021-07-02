@@ -9,5 +9,5 @@ app.listen(port);
 
 app.use('/home', registerUser)
 app.get('/', (req,res) =>{
-    res.send('booomerrrrrrange')
+    res.send('we have list of users here thanks')
 })
