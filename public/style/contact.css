@@ -1,0 +1,141 @@
+#map{
+  width: 100%;
+  height: 70vh;
+  position: relative;
+}
+
+.map-container h3{
+  color: white;
+  padding: 19px;
+  top : 30px;
+  position: absolute;
+  z-index: 1;
+  text-shadow: 1px 1px 5px black
+}
+
+/* Base */
+
+:root {
+  --bg: #212529;
+  --accent: #fed136;
+}
+
+#btn-field{
+  border: 1.9px solid black;
+  width:50%;
+  padding: 19px;
+  color: black;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 19px;
+ transition: .5s
+}
+
+
+html {
+  font-size: 10px;
+  font-family: Verdana, Arial, sans-serif;
+}
+
+body{
+  background-image: url("https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  background: rgba(0, 0, 0, 0.657);
+  border-radius: 10px;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 6rem;
+  text-shadow: 1px 1px 0 var(--bg), 2px 2px 0 var(--accent);
+}
+
+/* Form */
+
+.form-control {
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 2.5rem;
+  border-radius: 4px;
+  border: none;
+  font-size: 1.8rem;
+  border: 2px solid transparent;
+  font-family: Verdana, Arial, sans-serif;
+}
+
+.phone{
+  position: relative;
+  background: white;
+  margin: 0px auto;
+  width: 100%;
+  text-align: center;
+  padding: 50px 0px
+}
+
+.form-control::placeholder {
+  color: #9da1a5;
+  font-weight: bold;
+}
+
+.message {
+  resize: vertical;
+  min-height: 13rem;
+}
+
+.form-control:focus,
+.message:focus {
+  outline: none;
+  border: 2px solid var(--accent);
+}
+
+
+
+#btn-field:hover {
+  background-color: black;
+  color: white
+
+}
+
+#btn-field:active {
+  box-shadow: 0px 0px 0px 4px rgba(254, 209, 54, 0.6);
+}
+
+@media (min-width: 700px) {
+  form {
+    display: grid;
+    grid-gap: 2.4rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .form-control {
+    width: auto;
+    margin: 0;
+  }
+
+  .message {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+  }
+
+  #btn-field {
+    padding: 19px;
+    justify-self: center;
+    grid-column: span 2;
+  }
+}
+

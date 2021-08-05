@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="./images/tnilogo.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300">
+    <link rel="stylesheet" href="./style/home.css">
+
+
+    <title>Contact Us</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+   <script>
+      let map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 6.595680, lng: 3.337030 },
+          zoom: 19,
+        });
+        const image = "https://developers.google.com/maps/"+
+                      "/javascript/examples/full/images/beachflag.png";
+        const beachMarker = new google.maps.Marker({
+        position: { lat: 6.595680, lng: 3.337030 },
+        map,
+        icon: image,
+        });
+      }
+    </script>
+
+    <link rel="stylesheet" href="./style/contact.css">
+  </head>
+<body>
+      <header>
+          <h1><img src="./images/bar.svg" alt=""></h1>
+          <img src="./images/tnilogo.png" class="logo"/>
+        
+          <div class="nav-overlay"></div>
+          <ul class="navigation translate">
+              <a href="/"><li>Home</li></a>  
+              <li class="active">Contact Us</li>
+            
+              <li class="signout">Sign Out</li>
+          </ul>
+      </header>
+
+    <!--..........................Content................................. -->
+
+      <div class="map-container" style="position: relative;">
+        
+        <h3><p>Address:</p> 22/23 Billingsway , Ikeja, Lagos</h3>
+        <div id="map"></div>
+      </div>
+
+      <h3 class="phone">Call Us <a href="tel: +234805721878"> +234805721878</a></h3>
+
+      <div class="container">
+        <h1>Get In Touch</h1>
+        <div class="form">
+          <form>
+            <input
+              class="form-control" type="text" id="name"
+              aria-label="Name" placeholder="Your Name *"
+              required 
+            />
+            <input
+              class="form-control" type="email" id="mail"
+              aria-label="Email" placeholder="Your Email *"
+              required
+            />
+            <input
+              class="form-control" type="tel" id="tel"
+              aria-label="Phone Number" placeholder="Your Number *"
+              required
+            />
+            <textarea
+              class="message form-control" id="msg"
+              placeholder="Your Message *"
+              required 
+              col="10">
+            </textarea>
+            <input type="submit" value="Submit" id="btn-field">
+          </form>
+        </div>
+      </div>
+
+      
+      
+        <footer style="width: 100%; background: white; padding: 19px; position: absolute; bottom: 0">
+            <p>Powered by <span style="color: purple; font-weight: bolder">Translators' Network International</span> &copy; 2021</p>
+        </footer>
+      <script src="./script/home.js"></script>
+      <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfZqrirQ9YC-IAW8uHkdWrEBj1OzWqic0&callback=initMap&libraries=&" async></script>
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/signin.css">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url('./images/background.jpg');
+            background-size: cover;
+        }
+    </style>
+    <link rel="stylesheet" href="./style/registerStyle.css">
+</head>
+<body>
+    <nav>
+        <img src="./images/tnilogo.png" alt="tni logo">
+        <div class="nav-div">
+            <h1><span style="color: purple">TNI </span> Outreach Network</h1>
+        </div>
+      </nav>
+    <div class="login-wrap" style="margin-top: 60px">
+        <div class="login-html">
+          <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+          <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label> 
+          <div class="login-form">
+            <div class="sign-in-htm">
+              <p class="error"></p>
+              <div class="group">
+                <label for="user" class="label" style="margin-top: 60px">Email</label>
+                <input id="user" type="text" class="input">
+              </div>
+              <div class="group">
+                <label for="pass" class="label">Password</label>
+                <input id="pass" type="password" class="input" data-type="password">
+              </div>
+              
+              <!-- <div class="group">
+                <input id="check" type="checkbox" class="check" checked>
+                <label for="check"><span class="icon"></span> Keep me Signed in</label>
+              </div> -->
+              <div class="group">
+                <input type="submit" class="button" value="Sign In">
+              </div>
+              <p style="color: white">You don't have an account <a href="/signup" style="color: blue">Sign Up</a></p> 
+              <div class="hr"></div>
+              <!-- <div class="foot-lnk">
+                <a href="#forgot">Forgot Password?</a>
+              </div> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <script>
+          const btn = document.querySelector('.button');
+          const user = document.querySelector('#user')
+          const pass = document.querySelector('#pass');
+       
+
+          btn.onclick = async (e) =>{
+            e.preventDefault();
+            console.log(user.value, pass.value);
+            const params = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: user.value,
+            password: pass.value,
+          })
+        }
+
+          
+          const posted = await fetch(`/loginuser`, params)
+          const result = await posted.json();
+
+
+        if(posted.status == 200){
+          console.log(result);
+          window.location.href = '/homepage';
+        }else{
+          const error = document.querySelector('.error');
+          error.style.color = 'red'
+          error.innerText = result.message
+        }
+                      
+
+      }
+      </script>
+</body>
+</html>
