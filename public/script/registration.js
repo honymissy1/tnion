@@ -43,8 +43,8 @@ linkedButton.onclick = async(e) =>{
           })
         }
 
-      const posted = await fetch(`/register/`, params)
-       window.location.href =  posted.url
+      const posted = await fetch(`/register`, params)
+       window.location.href =  '/'
       }
   }else{  
     const error = document.querySelector('.error');

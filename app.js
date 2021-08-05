@@ -41,7 +41,7 @@ app.get('/', (req, res) =>{
     if(token){
         let decoded = jwt.verify(token, 'ourJwtSecretishere'); 
          if(decoded){
-            res.sendFile('/public/homepage.html', { root: __dirname})
+            res.sendFile('/public/Home.html', { root: __dirname})
          } else{
             res.sendFile('/public/signin.html', { root: __dirname})
          } 
