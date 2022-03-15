@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="./style/home.css">
+    <link rel="stylesheet" href="./style/blog.css">
+    <link rel="stylesheet" href="./style/nav.css">
+    <title>Blogs</title>
+</head>
+<body>
+
+    <header style="position: fixed; width: 100vw; top:0px">
+        <h1><img src="./images/bar.svg" alt=""></h1>
+            <div style="background-repeat: no-repeat; width: 100px; height: 100px; background-size: contain; background-image: url('./images/tnilogo.png');">
+               <!-- <img src="" class="logo" style="width: 100% !important"/> -->
+            </div>
+        <div class="nav-overlay"></div>
+        <ul class="navigation translate">
+            <a href="/homepage"><li >Home</li></a> 
+            <a class="active"><li>Blog</li></a>
+            <a href="/shop"><li>Shop</li></a>
+            <a href="/contact"><li>Contact Us</li></a> 
+            <a href="/signout"><li class="signout">Sign Out</li></a> 
+        </ul>
+    
+    </header>
+
+   
+    <div class="slider"></div>
+
+    <h4 style="margin-top: 150px; padding: 30px">Blogs</h4>
+    <div class="blog-section"></div>
+
+    <div class="banner">
+        <img src="./shops/assets/images/item-06.jpg" alt="licked">
+        <img src="./images/tniImage.jpg" alt="booom ">
+     
+    </div>
+
+
+
+    <script src="./script/home.js"></script>
+    <script>
+        const getBlogPost = async () =>{
+            let data = await fetch(`http://localhost:8080/blogs/blogposts`)
+            let result = await data.json();
+
+            result.forEach(element => {
+              let blogSection = document.querySelector('.blog-section');
+              let blogCard = document.createElement('div');
+              blogCard.classList = 'blog-card'
+              
+              blogSection.append(blogCard)
+              blogCard.innerHTML = `
+              
+                    <div class="blog-image">
+                        <img src=${element.image} 'alt="licked">
+                    </div>
+
+                    <div class="blog-content">
+                    <h4>${element.title}</h4>
+                    <p>${element.body.substring(0, 60)}...
+                    </p>
+                    <a href="/blogs/${element.id}"><p style="color: red">read more...</p></a>
+                    <p style="display: inline;">Likes ${element.likes}</p><b style="display: inline; float:right;">${element.date}</b>
+                    </div>        
+              `
+
+              blogCard.onclick = () =>{
+                  console.log('booom this is great');
+                  location.href = `/blogs/${element.id}`
+              }
+              console.log(element);  
+            });
+            
+        }
+
+        getBlogPost();
+    </script>
+</body>
+</html>

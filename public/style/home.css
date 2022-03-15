@@ -28,59 +28,6 @@ body {
     outline: 0 none !important;
   }
 
-  .active{
-    color: rgba(236, 236, 0, 0.911);
-    text-shadow: 1px .4px 3px black
-  }
-
-  a{
-    text-decoration: none;
-    color: black;
-  }
-
-  p {
-    font-size: 16px;
-    font-family: 'Open Sans', sans-serif; font-weight:300; 
-    letter-spacing: 1px
-  }
-
-  header {
-    background-image: url('../images/navbackground.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 10px 0px 19px;
-    display: flex;
-    align-items: center;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  .nav-overlay{
-    display: none;
-    z-index: 3;
-  } 
-
-  header h1{
-    display: none;
-  }
-  header .logo {
-    max-width: 100px;
-  }
-
-  .form-container img{
-    width: 100%
-  }
-
- .navigation {
-      list-style: none;
-      width: 80%;
-      display: flex;
-      margin: 0 auto;
-      align-items: center;
-      justify-content: space-evenly;
-      font-size: 1.3em;
-      font-weight: bolder;
-  }
-
   .jumbotron {
     width: 100vw;
     min-height: 450px;

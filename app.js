@@ -1,5 +1,9 @@
 const express = require('express');
 const registerUser = require('./routes/registeredUser');
+const shop = require('./routes/shop');
+const blog = require('./model/blogpost');
+const blogs = require('./routes/blogs');
+const admin = require('./routes/admin')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
@@ -11,16 +15,25 @@ const port = process.env.PORT
 app.listen(port);
 app.use(cors());
 app.use(express.static('public'))
+app.use(express.static('public/shops'))
+app.use(express.static('public/images'))
+
 app.use(express.json())
 app.use(cookieParser())
 
-mongoose.connect(process.env.DB_URL,
-{ useNewUrlParser: true, useUnifiedTopology: true }).then(response =>{
-    console.log('connected..');
-})
+// mongoose.connect(process.env.DB_URL,
+// { useNewUrlParser: true, useUnifiedTopology: true }).then(response =>{
+//     console.log('connected..');
+// })
 // ..........Server Routes .........
 app.use('/home', registerUser)
 app.use('/', registerUser);
+app.use('/shop', shop);
+app.use('/blogs', blogs);
+app.use('/admin', admin)
+
+
+app.set('view engine', 'ejs')
 
 const securedRoutes = (req, res, next)=> {
  const token = req.cookies.jwt;
@@ -31,7 +44,7 @@ const securedRoutes = (req, res, next)=> {
     } else{
         res.location('/')
     } 
- }else{
+  }else{
      res.redirect('/')
  }
 }
@@ -50,7 +63,7 @@ app.get('/', (req, res) =>{
     }
  })
 
-app.get('/homepage', securedRoutes, (req, res) =>{
+app.get('/homepage', (req, res) =>{
    res.sendFile('/public/Home.html', { root: __dirname})
 })
 
@@ -66,3 +79,10 @@ app.get('/signout', (req, res) =>{
     res.cookie('jwt', '', {maxAge: 1000})
     res.redirect('/')
 })
+
+
+
+//  .............................Blog Posts.............................................//
+
+
+

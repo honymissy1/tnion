@@ -1,0 +1,88 @@
+<%- include('./partials/header.ejs'); -%>
+<%- include('./partials/shops.ejs'); -%>
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Product <%= id %></title>
+
+<header>
+    <h1><img src="http://localhost:8080/images/bar.svg" alt=""></h1>
+    <img src="http://localhost:8080/images/tnilogo.png" class="logo" alt=""/>
+  
+    <div class="nav-overlay"></div>
+    <ul class="navigation translate">
+        <li>Home</li>
+        <a href="/blogs"><li>Blog</li></a>
+        <a href="/shop"><li class="active">Shop</li></a>
+        <a href="/contact"><li>Contact Us</li></a> 
+        <a href="/signout"><li class="signout">Sign Out</li></a> 
+    </ul>
+
+</header>
+
+<div class="slider"></div>
+
+
+<h3 style="margin-top: 50px; padding: 30px">ENION Product</h3>
+<div class="overall">
+    <div class="product-image">
+        <img src="http://localhost:8080/images/tniImage.jpg" alt="">
+    </div>
+    <div class="product-content">
+        <h1>Product <%= id %></h1>
+        <p>Lorem ipsum dolor sit amet consectetur 
+            adipisicing elit. A veritatis sit maiores 
+            repudiandae recusandae ex, voluptates 
+            consectetur hic magnam magni porro quis, officia dolore? Facilis dolorum qui temporibus modi corrupti harum aut laudantium corporis?</p>
+            
+            <b>Quantity:</b><input id="quantity" type="number" value="1" style="width: 50px; padding: 5px" />
+            <p class="error" style="color: red"></p>
+            <button class="order">Order Now</button>
+        </div>
+</div>
+
+<div class="image-slider"></div>
+
+
+<script>
+
+const overlay = document.querySelector('.nav-overlay');
+const bar = document.querySelector('h1');
+const nav = document.querySelector('.navigation');
+const body = document.querySelector('body')
+
+overlay.onclick = () =>{ 
+    nav.classList.add('translate');
+    overlay.style.display = 'none'
+    body.style.overflowY = 'scroll'
+}
+
+bar.onclick = () =>{
+body.style.overflow = 'hidden'
+nav.classList.remove('translate');
+overlay.style.display = 'block'
+}
+
+
+const error = document.querySelector('.error');
+const orderBtn = document.querySelector('.order');
+const quantity = document.querySelector('#quantity');
+orderBtn.addEventListener('click', () =>{
+    if(quantity.value < 1){
+        error.innerHTML = 'Order at least One Product'
+        console.log('Order at least one product');
+    } else{
+        error.innerHTML = ''
+        fetch(`http://localhost:8080/shop/checkout/<%= id %>`)
+        .then(data =>{
+            return data.json()
+           // location.href = 'http://localhost:8080/shop/checkout/<%= id %>'
+        }).then(result => console.log(result))
+    }
+    
+})
+
+</script>

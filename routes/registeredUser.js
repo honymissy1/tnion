@@ -25,7 +25,8 @@ Route.post('/register', (req, res) =>{
               user.save()
              .then(response =>{
                  const token = jwt.sign({id: response._id}, 'ourJwtSecretishere', { expiresIn: 3 * 24 * 60 * 60 })
-                 res.cookie('jwt', token)
+                 res.cookie('jwt', token);
+                 
                  res.redirect('/')
                  console.log(response._id)
                 }).catch(err =>{
@@ -41,7 +42,7 @@ Route.post('/loginuser', (req,res) =>{
         if(result) {
          if(req.body.password === result.password){
             const token = jwt.sign({id: result._id}, 'ourJwtSecretishere', { expiresIn: 1 * 24 * 60 * 60 })
-            res.cookie('jwt', token, {expiresIn: 1 * 24 * 60 * 60, httpOnly: true})
+             res.cookie('jwt', token, {expiresIn: 1 * 24 * 60 * 60, httpOnly: true})
              res.status(200).json({message: "Logged In"})
          }else{
           res.status(404).json({message: "Email/Password do not match"})
