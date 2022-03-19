@@ -76,7 +76,7 @@ orderBtn.addEventListener('click', () =>{
         console.log('Order at least one product');
     } else{
         error.innerHTML = ''
-        fetch(`http://localhost:8080/shop/checkout/<%= id %>`)
+        fetch(`http://localhost:8080/shop/checkout/<%= id %>?quantity=${quantity.value}`)
         .then(data =>{
             return data.json()
            // location.href = 'http://localhost:8080/shop/checkout/<%= id %>'

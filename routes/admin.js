@@ -47,5 +47,4 @@ Route.get('/dashboard', (req, res) =>{
      res.render('admin')
 })
 
-
 module.exports = Route

@@ -81,7 +81,15 @@ app.get('/signout', (req, res) =>{
 })
 
 
+app.get('/cookietest', (req,res) =>{
+   res.cookie("tola", "name=olayonu; age=45")
+   res.locals.user = 'terously'
+   res.send('Cookie tested')
+})
 
+app.get('/cookiecall',(req, res) =>{
+   // console.log(req.locals.user)
+})
 //  .............................Blog Posts.............................................//
 
 
