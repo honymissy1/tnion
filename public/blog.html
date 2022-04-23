@@ -51,7 +51,7 @@
     <script src="./script/home.js"></script>
     <script>
         const getBlogPost = async () =>{
-            let data = await fetch(`http://localhost:8080/blogs/blogposts`)
+            let data = await fetch(`/blogs/blogposts`)
             let result = await data.json();
                     
             result.forEach(element => {
