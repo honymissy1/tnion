@@ -12,17 +12,14 @@
 
 <div class="content">
     <div class="image" >
-        <img src="/shops/assets/images/about-us.jpg" alt="TNI Image">
+        <img src=<%= image %> alt="TNI Image">
     </div>
     <div class="blog-content">
-        <h1 style="padding: 10px 0px">Header <%= id %> for a very big project </h1>
-        <p>Lorem ipsum dolor sit, amet consectetur 
-            adipisicing elit. Beatae mollitia reprehender
-            it, minus provident fugit, quidem consequuntur nostrum totam assumenda asperiores nemo odio nobis molestias numquam consequatur eligendi repellat iure obcaecati cum! Tempore nulla, reprehenderit 
-            vitae est itaque voluptatem autem aperiam?
+        <h1 style="padding: 10px 0px"><%= title %>  </h1>
+        <p><%= body %>
         </p>
-
-        <p class="time">- 13/5/1990 13:30am</p>
+        <% let dates = new Date(createdAt) %>
+        <p class="time">- <%= dates.toLocaleDateString() %> <%= dates.toLocaleTimeString() %></p>
    
 
         <h1 style="display: inline-block; padding: 10px; margin: 0; margin-top: 100px;background: rgba(128, 128, 128, 0.089); ">Comment</h1>

@@ -53,13 +53,17 @@
         const getBlogPost = async () =>{
             let data = await fetch(`http://localhost:8080/blogs/blogposts`)
             let result = await data.json();
-
+                    
             result.forEach(element => {
               let blogSection = document.querySelector('.blog-section');
               let blogCard = document.createElement('div');
               blogCard.classList = 'blog-card'
-              
+              let date = new Date(element.createdAt);  // dateStr you get from mongodb
+
+              let d = date.toLocaleTimeString();
+
               blogSection.append(blogCard)
+              
               blogCard.innerHTML = `
               
                     <div class="blog-image">
@@ -70,14 +74,14 @@
                     <h4>${element.title}</h4>
                     <p>${element.body.substring(0, 60)}...
                     </p>
-                    <a href="/blogs/${element.id}"><p style="color: red">read more...</p></a>
-                    <p style="display: inline;">Likes ${element.likes}</p><b style="display: inline; float:right;">${element.date}</b>
+                    <a href="/blogs/${element._id}"><p style="color: red">read more...</p></a>
+                    <p style="display: inline;">Likes ${element.likes}</p><b style="display: inline; float:right;">${d}</b>
                     </div>        
               `
 
               blogCard.onclick = () =>{
                   console.log('booom this is great');
-                  location.href = `/blogs/${element.id}`
+                  location.href = `/blogs/${element._id}`
               }
               console.log(element);  
             });

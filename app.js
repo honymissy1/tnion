@@ -21,10 +21,10 @@ app.use(express.static('public/images'))
 app.use(express.json())
 app.use(cookieParser())
 
-// mongoose.connect(process.env.DB_URL,
-// { useNewUrlParser: true, useUnifiedTopology: true }).then(response =>{
-//     console.log('connected..');
-// })
+mongoose.connect(process.env.DB_URL,
+{ useNewUrlParser: true, useUnifiedTopology: true }).then(response =>{
+    console.log('connected..');
+})
 // ..........Server Routes .........
 app.use('/home', registerUser)
 app.use('/', registerUser);
@@ -81,15 +81,7 @@ app.get('/signout', (req, res) =>{
 })
 
 
-app.get('/cookietest', (req,res) =>{
-   res.cookie("tola", "name=olayonu; age=45")
-   res.locals.user = 'terously'
-   res.send('Cookie tested')
-})
 
-app.get('/cookiecall',(req, res) =>{
-   // console.log(req.locals.user)
-})
 //  .............................Blog Posts.............................................//
 
 

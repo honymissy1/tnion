@@ -9,7 +9,7 @@ const blog = new mongoose.Schema({
         comment: String
     },
     image: String,
-    date: { type: Date, default: Date.now },
+    createdAt: { type: Date, default: new Date() },
 })
 
 module.exports = mongoose.model('blogpost', blog)

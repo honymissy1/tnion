@@ -1,5 +1,6 @@
 const express = require('express');
 const Route = express.Router();
+const registeredUser = require('../model/registeredUser.js')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 
@@ -44,7 +45,11 @@ Route.get('/', (req, res) =>{
 })
 
 Route.get('/dashboard', (req, res) =>{
-     res.render('admin')
+    registeredUser.find()
+     .then(result =>{
+         res.render('admin', {result: result})
+     })
 })
+
 
 module.exports = Route

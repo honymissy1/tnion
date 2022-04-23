@@ -53,7 +53,14 @@ Route.post('/loginuser', (req,res) =>{
     })
 })
 
+Route.get('/users', (req,res)=>{
+    // registeredUser.find()
+    //  .then(result =>{
+    //   res.render(admin, result)
+    //  })
 
+     
+})
 
 
 module.exports = Route
