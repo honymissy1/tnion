@@ -2,68 +2,50 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="shortcut icon" href=<%= '/blogpics/'+picture %> type="image/x-icon">
 <title>Blog Post</title>
 
 <div class="slider">
     <h3 style="color: white"><a href="/blogs"> Back</a></h3>
+   
 </div>
 
 
 <div class="content">
-    <div class="image" >
-        <img src=<%= image %> alt="TNI Image">
+    <div class="image" style="width: 80%; height: 400px; position:relative" >
+        <img src=<%= '/blogpics/'+picture %> alt="TNI Image" style="height: 100%">
     </div>
     <div class="blog-content">
-        <h1 style="padding: 10px 0px"><%= title %>  </h1>
-        <p><%= body %>
+        <h3 style="padding: 10px 0px; font-size:3em"><%= title %>  </h3>
+        <p style="color: rgb(171, 160, 160);"><%= content %>
         </p>
-        <% let dates = new Date(createdAt) %>
+        <% let dates = new Date(date) %>
         <p class="time">- <%= dates.toLocaleDateString() %> <%= dates.toLocaleTimeString() %></p>
    
 
-        <h1 style="display: inline-block; padding: 10px; margin: 0; margin-top: 100px;background: rgba(128, 128, 128, 0.089); ">Comment</h1>
+
+
+
+        <h4 style="display: inline-block; padding: 10px; margin: 0; margin-top: 100px;background: rgba(128, 128, 128, 0.089); ">Comment</h4>
         <div class="comment">
-                <div class="inner-comment">
-                    <h3>Olayinka James</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Repellat, expedita animi cum nemo similique rem. 
-                        Asperiores similique repudiandae facere!
-                    </p>
-                    <p class="time">-13/5/1990 13:30am</p>
-                </div>
-
-                <hr>
-                <div class="inner-comment">
-                    <h3>Olayinka James</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Repellat, expedita animi 
-                    </p>
-                    <p class="time">- 13/5/1990 13:30am</p>
-                </div>
-                <hr>
-
-                <div class="inner-comment">
-                    <h3>Olayinka James</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        
-                    </p>
-                    <p class="time">- 13/5/1990 13:30am</p>
-                </div>
-
-                <hr>
-                <div class="inner-comment">
-                    <h3>Olayinka James</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Repellat, expedita animi cum nemo similique rem. 
-                        Asperiores similique repudiandae facere!
-                    </p>
-                    <p class="time">- 13/5/1990 13:30am</p>
-                </div>
+            <% if(comments.length < 1){ %>
+                <p style="color: rgb(50, 39, 39)">No Comment Yet</p>
+            <% } else { %>  
+            <% for(let i = 0; i < comments.length; i++){ %>
+            <div class="inner-comment">
+                <p style="color: black"><%= comments[i].user %></p>
+                <p><%= comments[i].content %></p>
+                <p class="time">- <%= comments[i].date.toLocaleDateString() + ' - '+ comments[i].date.toLocaleTimeString() %></p>
+            <% } } %>
         </div>
     </div>
 
 </div>
 
 
-    <div class="slider"></div>
+    <div class="slider" style="margin-top: 30px">
+        <form action="<%= '/blogs/'+ _id  %>" method="post" style="margin-top: 30px;" enctype="multipart/form-data">
+            <textarea name="comment" id="" rows="10" style="width: 100%; padding: 10px"></textarea>
+            <input type="submit" value="Comment" style="padding:10px">
+        </form>
+    </div>

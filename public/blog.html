@@ -58,7 +58,7 @@
               let blogSection = document.querySelector('.blog-section');
               let blogCard = document.createElement('div');
               blogCard.classList = 'blog-card'
-              let date = new Date(element.createdAt);  // dateStr you get from mongodb
+              let date = new Date(element.date);  // dateStr you get from mongodb
 
               let d = date.toLocaleTimeString();
 
@@ -67,12 +67,12 @@
               blogCard.innerHTML = `
               
                     <div class="blog-image">
-                        <img src=${element.image} 'alt="licked">
+                        <img src=${'/blogpics/'+element.picture} 'alt="licked">
                     </div>
 
                     <div class="blog-content">
                     <h4>${element.title}</h4>
-                    <p>${element.body.substring(0, 60)}...
+                    <p>${element.content.substring(0, 60)}...
                     </p>
                     <a href="/blogs/${element._id}"><p style="color: red">read more...</p></a>
                     <p style="display: inline;">Likes ${element.likes}</p><b style="display: inline; float:right;">${d}</b>

@@ -64,19 +64,19 @@
             e.preventDefault();
             console.log(user.value, pass.value);
             const params = {
-          method: 'POST',
-          headers: {
+            method: 'POST',
+            headers: {
             'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
+            },
+            body: JSON.stringify({
             email: user.value,
             password: pass.value,
           })
         }
 
           
-          const posted = await fetch(`/loginuser`, params)
-          const result = await posted.json();
+          const posted = await fetch(`/register/loginuser`, params)
+          const result = await posted.text();
 
 
         if(posted.status == 200){

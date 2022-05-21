@@ -4,13 +4,13 @@ const linkedButton = document.querySelector('.submit')
 const form = document.querySelector('form')
 const error = document.querySelector('.error');
 
-fetch(`https://restcountries.eu/rest/v2/?fullText=true`)
+fetch(`https://restcountries.com/v3.1/all`)
 .then(response => response.json())
 .then(result =>{
     result.forEach(element => {
       const option = document.createElement('option')
-      option.text = element.name;
-      option.value = element.name;
+      option.text = element.name.common;
+      option.value = element.name.common;
       country.append(option);
     });
 })

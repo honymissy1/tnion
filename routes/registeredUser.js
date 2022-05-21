@@ -3,7 +3,9 @@ const Route = express.Router();
 const registeredUser = require('../model/registeredUser');
 const jwt = require('jsonwebtoken');
 
-Route.post('/register', (req, res) =>{
+
+
+Route.post('/', (req, res) =>{
     registeredUser.findOne({email: req.body.email})
     .then(result => {
         if(result) {
@@ -26,9 +28,8 @@ Route.post('/register', (req, res) =>{
              .then(response =>{
                  const token = jwt.sign({id: response._id}, 'ourJwtSecretishere', { expiresIn: 3 * 24 * 60 * 60 })
                  res.cookie('jwt', token);
-                 
                  res.redirect('/')
-                 console.log(response._id)
+              
                 }).catch(err =>{
                  console.log('what have we done');
              })
@@ -36,22 +37,27 @@ Route.post('/register', (req, res) =>{
     })
 })
 
+
 Route.post('/loginuser', (req,res) =>{
-    registeredUser.findOne({email: req.body.email})
+    registeredUser.findOne({ email: req.body.email })
     .then(result => {
         if(result) {
          if(req.body.password === result.password){
             const token = jwt.sign({id: result._id}, 'ourJwtSecretishere', { expiresIn: 1 * 24 * 60 * 60 })
              res.cookie('jwt', token, {expiresIn: 1 * 24 * 60 * 60, httpOnly: true})
-             res.status(200).json({message: "Logged In"})
+             res.redirect('/homepage')
          }else{
           res.status(404).json({message: "Email/Password do not match"})
-         }
+      
+        }
         }else{
           res.status(404).json({message: "Email/Password do not match"})
         }
+    }).catch(err =>{
+        res.send(err)
     })
 })
+
 
 Route.get('/users', (req,res)=>{
     // registeredUser.find()

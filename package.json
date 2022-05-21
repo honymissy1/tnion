@@ -1,11 +1,11 @@
 {
   "name": "tni-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a property of of Loveworld Inc",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.0",
+    "multer": "^1.4.4",
     "nodemon": "^2.0.9"
   }
 }

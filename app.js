@@ -19,21 +19,22 @@ app.use(express.static('public/shops'))
 app.use(express.static('public/images'))
 
 app.use(express.json())
+app.set('view engine', 'ejs')
 app.use(cookieParser())
 
-mongoose.connect(process.env.DB_URL,
-{ useNewUrlParser: true, useUnifiedTopology: true }).then(response =>{
-    console.log('connected..');
-})
+
 // ..........Server Routes .........
 app.use('/home', registerUser)
-app.use('/', registerUser);
+app.use('/register', registerUser);
 app.use('/shop', shop);
 app.use('/blogs', blogs);
 app.use('/admin', admin)
 
 
-app.set('view engine', 'ejs')
+mongoose.connect(process.env.DB_URL,
+    { useNewUrlParser: true, useUnifiedTopology: true }).then(response =>{
+        console.log('connected..');
+    })
 
 const securedRoutes = (req, res, next)=> {
  const token = req.cookies.jwt;
@@ -42,14 +43,16 @@ const securedRoutes = (req, res, next)=> {
     if(decoded){
        next()  
     } else{
-        res.location('/')
+        res.redirect('/')
     } 
   }else{
      res.redirect('/')
  }
 }
 
-app.get('/', (req, res) =>{
+
+
+app.get('/',  (req, res) =>{
     const token = req.cookies.jwt;
     if(token){
         let decoded = jwt.verify(token, 'ourJwtSecretishere'); 
@@ -63,7 +66,7 @@ app.get('/', (req, res) =>{
     }
  })
 
-app.get('/homepage', (req, res) =>{
+app.get('/homepage', securedRoutes, (req, res) =>{
    res.sendFile('/public/Home.html', { root: __dirname})
 })
 
@@ -71,7 +74,7 @@ app.get('/signup', (req, res) =>{
     res.sendFile('/public/signup.html', { root: __dirname})
  })
 
-app.get('/contact', securedRoutes, (req, res)=> {
+app.get('/contact',securedRoutes, securedRoutes, (req, res)=> {
     res.sendFile('/public/contact.html', { root: __dirname})
 })
 
@@ -83,6 +86,7 @@ app.get('/signout', (req, res) =>{
 
 
 //  .............................Blog Posts.............................................//
+
 
 
 
