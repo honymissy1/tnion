@@ -27,9 +27,8 @@ Route.post('/', (req, res) =>{
               user.save()
              .then(response =>{
                  const token = jwt.sign({id: response._id}, 'ourJwtSecretishere', { expiresIn: 3 * 24 * 60 * 60 })
-                 res.cookie('jwt', token);
+                 res.cookie('jwt', token);              
                  res.redirect('/')
-              
                 }).catch(err =>{
                  console.log('what have we done');
              })

@@ -75,10 +75,7 @@ Route.get('/:id', securedRoutes, checkUser, (req, res) =>{
 })
 
 
-
-
-
-    Route.post('/postBlog', upload.single('picture'), function (req, res) {
+Route.post('/postBlog', upload.single('picture'), function (req, res) {
         const date = new Date()
         blogs.create({
             title: req.body.title,
